@@ -4,26 +4,20 @@
     "type":"library",
     "description":"CMSx Page component",
     "homepage":"http://cmsx.ru",
+    "license":"MIT",
+    "authors":[
+        {
+            "name":"Igor Osharin",
+            "email":"igor@osharin.ru",
+            "homepage":"http://igor.osharin.ru"
+        }
+    ],
     "require":{
         "php":">=5.3.0",
         "cmsx/html":"dev-master",
         "cmsx/template":"dev-master",
         "cmsx/container":"dev-master"
     },
-    "repositories":[
-        {
-            "type":"git",
-            "url":"http://github.com/cmsx/HTML"
-        },
-        {
-            "type":"git",
-            "url":"http://github.com/cmsx/Template"
-        },
-        {
-            "type":"git",
-            "url":"http://github.com/cmsx/Container"
-        }
-    ],
     "autoload":{
         "psr-0":{
             "CMSx":"src"
