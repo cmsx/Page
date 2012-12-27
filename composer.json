@@ -1,6 +1,6 @@
 {
     "name":"cmsx/page",
-    "version":"0.1",
+    "version":"0.1.1",
     "type":"library",
     "description":"CMSx Page component",
     "homepage":"http://cmsx.ru",

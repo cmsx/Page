@@ -187,6 +187,17 @@ class PageTest extends PHPUnit_Framework_TestCase
     $this->assertSelectCount('html body b', true, $html, 'Тело страницы');
   }
 
+  function testNoTemplate()
+  {
+    $p = new Page;
+    $p->setTitle('Hello')
+      ->setText('<p>World</p>');
+
+    $html = $p->render();
+    $this->assertSelectCount('html body h1', true, $html, 'Заголовок на странице');
+    $this->assertSelectCount('html body p', true, $html, 'Текст на странице');
+  }
+
   public static function setUpBeforeClass()
   {
     Template::EnableDebug();

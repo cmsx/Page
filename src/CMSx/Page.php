@@ -4,6 +4,9 @@ namespace CMSx;
 
 use CMSx\Page\Exception;
 
+/**
+ * @method Page set($name, $value) Установить значение
+ */
 class Page extends Container
 {
   const DOCTYPE_HTML_4_STRICT       = 'html4strict';
@@ -68,11 +71,16 @@ class Page extends Container
   {
     $v         = $this->vars;
     $v['page'] = $this;
-    $t         = new \CMSx\Template($this->template, $v);
+    if ($this->template) {
+      $t    = new \CMSx\Template($this->template, $v);
+      $body = $t->render();
+    } else {
+      $body = $this->renderHeader() . $this->getText();
+    }
 
     return HTML::Tag(
       'body',
-      $t->render() . "\n" . $this->renderJS(),
+      $body . "\n" . $this->renderJS(),
       $attr ? : $this->body_attr,
       false,
       true
@@ -204,10 +212,26 @@ class Page extends Container
     return HTML::Tag('link', null, $attr, true) . "\n";
   }
 
+  /** Текст страницы */
+  public function setText($text)
+  {
+    $this->set('text', $text);
+
+    return $this;
+  }
+
+  /** Текст страницы */
+  public function getText()
+  {
+    return $this->get('text');
+  }
+
   /** Произвольные теги в HEAD */
   public function setMeta($meta)
   {
-    return $this->set('meta', $meta);
+    $this->set('meta', $meta);
+
+    return $this;
   }
 
   /** Произвольные теги в HEAD */
@@ -219,7 +243,9 @@ class Page extends Container
   /** Канонический адрес страницы (link rel="canonical") */
   public function setCanonical($url)
   {
-    return $this->set('canonical', $url);
+    $this->set('canonical', $url);
+
+    return $this;
   }
 
   /** Домен. Используется в ссылках */
@@ -305,7 +331,9 @@ class Page extends Container
   /** Мета-тег keywords */
   public function setKeywords($value)
   {
-    return $this->set('keywords', $value);
+    $this->set('keywords', $value);
+
+    return $this;
   }
 
   /** Мета-тег keywords */
@@ -317,7 +345,9 @@ class Page extends Container
   /** Мета-тег description */
   public function setDescription($value)
   {
-    return $this->set('description', $value);
+    $this->set('description', $value);
+
+    return $this;
   }
 
   /** Мета-тег description */
@@ -329,7 +359,9 @@ class Page extends Container
   /** Тег title */
   public function setTitle($value)
   {
-    return $this->set('title', $value);
+    $this->set('title', $value);
+
+    return $this;
   }
 
   /** Тег title */
@@ -341,7 +373,9 @@ class Page extends Container
   /** Заголовок на странице */
   public function setHeader($value)
   {
-    return $this->set('header', $value);
+    $this->set('header', $value);
+
+    return $this;
   }
 
   /** Заголовок на странице */
