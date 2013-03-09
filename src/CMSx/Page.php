@@ -66,8 +66,11 @@ class Page extends Container
       : '<html>') . "\n";
   }
 
-  /** Отрисовка тела страницы */
-  public function renderBody($attr = null)
+  /**
+   * Отрисовка тела страницы.
+   * По-умолчанию также отрисовываются и JS в конце BODY
+   */
+  public function renderBody($attr = null, $withJS = true)
   {
     $v         = $this->vars;
     $v['page'] = $this;
@@ -80,7 +83,7 @@ class Page extends Container
 
     return HTML::Tag(
       'body',
-      $body . "\n",
+      $body . "\n" . ($withJS ? $this->renderJS() : ''),
       $attr ? : $this->body_attr,
       false,
       true

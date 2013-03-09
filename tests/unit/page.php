@@ -183,7 +183,7 @@ class PageTest extends PHPUnit_Framework_TestCase
     $this->assertSelectCount('head meta[name=description]', true, $html, 'Description');
     $this->assertSelectCount('link[rel=canonical]', true, $html, '');
     $this->assertSelectCount('link[rel=stylesheet]', 2, $html, 'Стили CSS');
-    $this->assertSelectCount('script[type=text/javascript]', 2, $html, 'Скрипты');
+    $this->assertSelectCount('html body script[type=text/javascript]', 2, $html, 'Скрипты');
     $this->assertSelectCount('html body b', true, $html, 'Тело страницы');
   }
 

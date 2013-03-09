@@ -12,6 +12,4 @@
 </head>
 
 <?= $page->renderBody() ?>
-
-<?= $page->renderJS() ?>
 </html>
