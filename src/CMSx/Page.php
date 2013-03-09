@@ -80,7 +80,7 @@ class Page extends Container
 
     return HTML::Tag(
       'body',
-      $body . "\n" . $this->renderJS(),
+      $body . "\n",
       $attr ? : $this->body_attr,
       false,
       true
@@ -169,8 +169,11 @@ class Page extends Container
     return $out ? $out . "\n" : false;
   }
 
-  /** Список подключаемых JS */
-  public function renderJS()
+  /**
+   * Список подключаемых JS
+   * $closed_tag - выводить закрытый тег или полный
+   */
+  public function renderJS($closed_tag = false)
   {
     $out = array();
     if (count($this->js)) {
@@ -180,7 +183,7 @@ class Page extends Container
           'type' => 'text/javascript',
           'src'  => $file
         );
-        $out[] = HTML::Tag('script', null, $attr, true);
+        $out[] = HTML::Tag('script', null, $attr, $closed_tag);
       }
       $out[] = '<!-- /JS -->';
     }
