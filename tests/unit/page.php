@@ -120,8 +120,8 @@ class PageTest extends PHPUnit_Framework_TestCase
       ->addJS('js.js');
 
     $exp = '<!-- JS -->' . "\n"
-      . '<script src="test.js" type="text/javascript" />' . "\n"
-      . '<script src="js.js" type="text/javascript" />' . "\n"
+      . '<script src="test.js" type="text/javascript"></script>' . "\n"
+      . '<script src="js.js" type="text/javascript"></script>' . "\n"
       . '<!-- /JS -->' . "\n";
     $this->assertEquals($exp, $p->renderJS(), 'Сформированный HTML');
 
