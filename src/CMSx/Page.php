@@ -75,7 +75,7 @@ class Page extends Container
     $v         = $this->vars;
     $v['page'] = $this;
     if ($this->template) {
-      $t    = new \CMSx\Template($this->template, $v);
+      $t    = new \CMSx\Template($this->template, $v, false);
       $body = $t->render();
     } else {
       $body = $this->renderHeader() . $this->getText();
@@ -435,7 +435,7 @@ class Page extends Container
     $vars         = $this->vars;
     $vars['page'] = $this;
 
-    return new Page\Template($this->layout, $vars);
+    return new Page\Template($this->layout, $vars, false);
   }
 
   /** Дополнительная инициализация */
